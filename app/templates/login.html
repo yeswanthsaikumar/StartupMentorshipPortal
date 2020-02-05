@@ -1,0 +1,25 @@
+{% extends "theme.html" %}
+
+{% block content %}
+	<form method="post" action="" novalidate>
+		{{ form.hidden_tag() }}
+
+		<h1>Sign In</h1>
+
+		{{form.username.label}} : {{form.username(size=32)}}<br>
+		{% for error in form.username.errors %}
+			<span style=" color:red; ">[{{error}}]</span>
+		{% endfor %}<br>
+
+		{{form.password.label}} : {{form.password(size=32)}} <br>
+		{% for error in form.password.errors %}
+			<span style=" color:red; ">[{{error}}]</span>
+		{% endfor %}<br>
+
+		{{form.remember_me()}} {{form.remember_me.label}}<br>
+		
+		{{form.submit()}}
+
+		<p>New User? <a href="{{url_for('register')}}">Click to Resgister!</a></p>
+	</form>
+{% endblock %}
