@@ -15,12 +15,19 @@
 					<span style="color:red ;">[ {{error}} ]</span>
 				{% endfor %}
 			</p>
-			<p>{{form.submit()}}</p>
+			<p>{{form. submit()}}</p>
 		</form>
 	{% endif %}
 
 	{%for post in posts %}
 		{% include '_post.html' %}
 	{%endfor%}
+
+	{% if prev_url %}
+		<a href="{{prev_url}}">previous_page</a>
+	{% endif %}
+	{% if next_url %}
+		<a href="{{next_url}}">next_page</a>
+	{% endif %}
 
 {% endblock %}

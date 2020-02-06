@@ -30,9 +30,21 @@ def home():
 
 	user = {'username':"yeswanth"}
 
-	posts = current_user.followed_posts().all()
+	page = request.args.get('page', 1, type=int )
 
-	return render_template('home.html' , posts=posts, form=form,title='home')
+	posts = current_user.followed_posts().paginate( page, app.config['POSTS_PER_PAGE'],False)
+
+	if posts.has_next :
+		next_url = url_for('explore' , page=posts.next_num)
+	else :
+		next_url = None
+
+	if posts.has_prev :
+		prev_url = url_for('explore' , page=posts.prev_num)
+	else :
+		prev_url = None
+
+	return render_template('home.html' , posts=posts.items, form=form,title='home' , next_url=next_url , prev_url=prev_url)
 
 
 
@@ -93,9 +105,21 @@ def user(username):
 
 	user = User.query.filter_by(username=username).first_or_404()
 
-	posts = Post.query.order_by(Post.timeStamp.desc()).all()
+	page = request.args.get('page', 1, type=int )
 
-	return render_template("user.html", user=user , posts= posts)
+	posts = user.posts.order_by(Post.timeStamp.desc()).paginate(page , app.config['POSTS_PER_PAGE'] , False)
+
+	if posts.has_next :
+		next_url = url_for('user' , page=posts.next_num , username=user.username)
+	else :
+		next_url = None
+
+	if posts.has_prev :
+		prev_url = url_for('user' , page=posts.prev_num , username=user.username)
+	else :
+		prev_url = None
+
+	return render_template("user.html", user=user , posts= posts.items , next_url=next_url , prev_url=prev_url)
 
 	
 
@@ -150,6 +174,19 @@ def unfollow(username):
 @app.route('/explore/')
 @login_required
 def explore():
-	posts = Post.query.order_by(Post.timeStamp.desc()).all()
 
-	return render_template('home.html' , posts=posts , title='Explore' )
+	page = request.args.get('page', 1, type=int )
+
+	posts = Post.query.order_by(Post.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
+
+	if posts.has_next :
+		next_url = url_for('explore' , page=posts.next_num)
+	else :
+		next_url = None
+
+	if posts.has_prev :
+		prev_url = url_for('explore' , page=posts.prev_num)
+	else :
+		prev_url = None
+
+	return render_template('home.html' , posts=posts.items , title='Explore' , next_url=next_url , prev_url=prev_url)
