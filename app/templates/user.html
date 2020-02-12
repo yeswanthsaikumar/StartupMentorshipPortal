@@ -10,13 +10,20 @@
 				<h1>User :{{user.username}} {{user.user_category}}</h1>
 				{% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
 				{%if user.last_seen %}<p>Last seen on: {{user.last_seen}}</p> {% endif %}
-				{% if user == current_user %}
-					<p><a role="button" class="btn btn-default" href="{{url_for('editprofile')}}">Edit Profile</a></p>
-				{% elif not current_user.is_following(user) %}
-					<p><a href="{{url_for('follow',username=user.username)}}" class="btn btn-default" role="button">Follow</a></p>
-				{% else %}
-					<p><a href="{{url_for('unfollow' , username=user.username)}}" role="button" class="btn btn-default">Unfollow</a></p>
-				{% endif%}
+				<p>
+					{% if user == current_user %}
+						<a role="button" class="btn btn-default" href="{{url_for('editprofile')}}">Edit Profile</a>
+					{% elif not current_user.is_following(user) %}
+						<a href="{{url_for('follow',username=user.username)}}" class="btn btn-default" role="button">Follow</a>
+					{% else %}
+						<a href="{{url_for('unfollow' , username=user.username)}}" role="button" class="btn btn-default">Unfollow</a>
+					{% endif %}
+					{% if user != current_user %}
+		                <a href="{{ url_for('send_message', recipient=user.username) }}" 
+		                    role="button" class="btn btn-default">message</a>
+	                {% endif %}
+           		 </p>
+
 			</td>
 		</tr>
 	</table>

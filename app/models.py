@@ -6,36 +6,42 @@ from hashlib import md5
 
 
 @login.user_loader
-def user_loader(id):
-	return User.query.get(int(id))
+def user_loader(user_id):
+	return User.query.get(int(user_id))
 
 followers = db.Table('followers',
-	db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-	db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+	db.Column('follower_id', db.Integer, db.ForeignKey('user.user_id')),
+	db.Column('followed_id', db.Integer, db.ForeignKey('user.user_id'))
 )
 
 class User( UserMixin, db.Model):
 	__tablename__ = 'user'
 
-	id = db.Column(db.Integer , primary_key=True)
+	user_id = db.Column(db.Integer , primary_key=True)
 	username = db.Column(db.String(64) ,index=True , unique=True)
 	email = db.Column(db.String(64) , index=True , unique=True)
 	password_hash = db.Column(db.String(200))
 	about_me = db.Column(db.String(200))
 	last_seen = db.Column(db.DateTime , default=datetime.utcnow)
 	user_category = db.Column(db.String(50) ,default=None)
+	sector = db.Column(db.String(50) , default=None)
 	posts = db.relationship('Post' , backref='author' , lazy='dynamic')
 	stories = db.relationship('Stories' , backref='author' , lazy='dynamic')
+	messages_sent = db.relationship('Message' , backref='author', foreign_keys='Message.sender_id' ,lazy='dynamic')
+	messages_recieved = db.relationship('Message' , backref='recipient' ,foreign_keys='Message.recipient_id' , lazy='dynamic')
+	last_message_read_time = db.Column(db.DateTime)
 	followed = db.relationship(
 	'User', secondary=followers,
-	primaryjoin=(followers.c.follower_id == id),
-	secondaryjoin=(followers.c.followed_id == id),
+	primaryjoin=(followers.c.follower_id == user_id),
+	secondaryjoin=(followers.c.followed_id == user_id),
 	backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
 
 
 	def __repr__(self):
 		return self.username
 
+	def get_id(self):
+		return (self.user_id)
 
 	def set_password(self , password):
 		self.password_hash = generate_password_hash(password)
@@ -60,26 +66,29 @@ class User( UserMixin, db.Model):
 			self.followed.remove(user)
 
 	def is_following(self, user):
-		return self.followed.filter(followers.c.followed_id == user.id ).count() > 0
+		return self.followed.filter(followers.c.followed_id == user.user_id ).count() > 0
 
 	def followed_posts(self):
 		followed =  Post.query.join(
 			followers,(followers.c.followed_id == Post.user_id)).filter(
-			followers.c.follower_id == self.id)
+			followers.c.follower_id == self.user_id)
 
-		own = Post.query.filter_by( user_id = self.id)
+		own = Post.query.filter_by( user_id = self.user_id)
 
 		return followed.union(own).order_by(Post.timeStamp.desc())
 			
+	def new_messages(self):
+		last_read_time = self.last_message_read_time or datetime(2000 , 1 , 1)
+		return Message.query.filter_by().filter( Message.timestamp > last_read_time ).count()
 
 
 class Post(db.Model):
 	__tablename__ = 'post'
 
-	id = db.Column( db.Integer, primary_key=True)
+	Post_id = db.Column( db.Integer, primary_key=True)
 	body = db.Column(db.String(200))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
-	user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
+	user_id = db.Column(db.Integer , db.ForeignKey('user.user_id'))
 
 	def __repr__(self):
 		return '<Post : {}>'.format(self.body)
@@ -88,10 +97,10 @@ class Post(db.Model):
 class Stories(db.Model):
 	__tablename__ = 'stories'
 
-	id = db.Column( db.Integer, primary_key=True)
+	stories_id = db.Column( db.Integer, primary_key=True)
 	body = db.Column(db.String(5000))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
-	user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
+	user_id = db.Column(db.Integer , db.ForeignKey('user.user_id'))
 
 	def __repr__(self):
 		return '<Story : {}>'.format(self.body)
@@ -99,11 +108,25 @@ class Stories(db.Model):
 class News(db.Model):
 	__tablename__ = 'news'
 
-	id = db.Column( db.Integer, primary_key=True)
+	news_id = db.Column( db.Integer, primary_key=True)
 	body = db.Column(db.String(5000))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
 	sector = db.Column(db.String(30))
 
 	def __repr__(self):
 		return '<Post : {}>'.format(self.body)
+
+
+class Message(db.Model):
+	__tablename__= 'message'
+
+	message_id = db.Column(db.Integer, primary_key=True)
+	sender_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+	recipient_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
+	body = db.Column(db.String(140))
+	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+	def __repr__(self):
+		return '<Message {}>'.format(self.body)
+
 

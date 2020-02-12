@@ -6,6 +6,8 @@ class Config(object):
 	SECRET_KEY = os.environ.get("SECRET_KEY") or "This is secret key"
 
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join( basedir, 'app.db')	
+	#SQLALCHEMY_DATABASE_URI = 'mysql://root:Yeswanth@99@localhost/startupMinds'	
+
 
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 
