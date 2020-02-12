@@ -1,0 +1,9 @@
+{% extends "theme.html" %}
+
+{% block app_content%}
+
+	{%for mentor in mentors%}
+		{{mentor}}
+	{% endfor %}
+
+{% endblock%}

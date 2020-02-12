@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField , SubmitField , TextField , BooleanField , TextAreaField
+from wtforms import PasswordField , SubmitField , TextField , BooleanField , TextAreaField , SelectField
 from wtforms.validators import DataRequired , Email , EqualTo , ValidationError , Length
 from app.models import User
 
@@ -14,6 +14,7 @@ class LoginForm(FlaskForm):
 class RegistrationForm(FlaskForm):
 	username = TextField('username' , validators=[DataRequired()])
 	email = TextField('gmail', validators=[DataRequired() , Email()])
+	user_category = SelectField('select who you are' ,choices=[('entreprenuer','entreprenuer') , ('mentor','mentor') , ('investor','investor')])
 	password = PasswordField( 'Password', validators=[DataRequired() , EqualTo('password1')])
 	password1= PasswordField('Repeat Password' , validators=[DataRequired()])
 	submit = SubmitField('Register')
@@ -38,9 +39,15 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField('Say something', validators=[
-        DataRequired(), Length(min=1, max=200)])
-    submit = SubmitField('Submit')
+	post = TextAreaField('Say something', validators=[
+		DataRequired(), Length(min=1, max=5000)])
+	submit = SubmitField('Submit')
+
+class StoryForm(FlaskForm):
+	story = TextAreaField('Share your experiece with us', validators=[
+		DataRequired(), Length(min=1, max=5000)])
+	submit = SubmitField('Submit')
+
 
 
 

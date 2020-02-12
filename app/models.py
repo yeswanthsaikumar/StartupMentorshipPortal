@@ -6,7 +6,7 @@ from hashlib import md5
 
 
 @login.user_loader
-def user_load(id):
+def user_loader(id):
 	return User.query.get(int(id))
 
 followers = db.Table('followers',
@@ -23,7 +23,9 @@ class User( UserMixin, db.Model):
 	password_hash = db.Column(db.String(200))
 	about_me = db.Column(db.String(200))
 	last_seen = db.Column(db.DateTime , default=datetime.utcnow)
+	user_category = db.Column(db.String(50) ,default=None)
 	posts = db.relationship('Post' , backref='author' , lazy='dynamic')
+	stories = db.relationship('Stories' , backref='author' , lazy='dynamic')
 	followed = db.relationship(
 	'User', secondary=followers,
 	primaryjoin=(followers.c.follower_id == id),
@@ -32,7 +34,7 @@ class User( UserMixin, db.Model):
 
 
 	def __repr__(self):
-		return '<User {}>'.format(self.username)
+		return self.username
 
 
 	def set_password(self , password):
@@ -51,6 +53,7 @@ class User( UserMixin, db.Model):
 	def follow(self , user) :
 		if not self.is_following(user) :
 			self.followed.append(user)
+
 
 	def unfollow(self , user) :
 		if self.is_following(user) :
@@ -77,6 +80,29 @@ class Post(db.Model):
 	body = db.Column(db.String(200))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
 	user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
+
+	def __repr__(self):
+		return '<Post : {}>'.format(self.body)
+
+
+class Stories(db.Model):
+	__tablename__ = 'stories'
+
+	id = db.Column( db.Integer, primary_key=True)
+	body = db.Column(db.String(5000))
+	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
+	user_id = db.Column(db.Integer , db.ForeignKey('user.id'))
+
+	def __repr__(self):
+		return '<Story : {}>'.format(self.body)
+
+class News(db.Model):
+	__tablename__ = 'news'
+
+	id = db.Column( db.Integer, primary_key=True)
+	body = db.Column(db.String(5000))
+	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
+	sector = db.Column(db.String(30))
 
 	def __repr__(self):
 		return '<Post : {}>'.format(self.body)

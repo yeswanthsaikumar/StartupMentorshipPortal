@@ -1,8 +1,8 @@
 from app import app , db
 from flask import render_template , redirect , flash , url_for ,request
-from app.forms import LoginForm , RegistrationForm , EditProfileForm , PostForm
+from app.forms import LoginForm , RegistrationForm , EditProfileForm , PostForm , StoryForm
 from flask_login import current_user , login_user , logout_user , login_required
-from app.models import User , Post
+from app.models import User , Post , Stories , News
 from werkzeug.urls import url_parse
 from datetime import datetime
 
@@ -28,23 +28,21 @@ def home():
 		flash('your post is on live')
 		return redirect(url_for('home'))
 
-	user = {'username':"yeswanth"}
-
 	page = request.args.get('page', 1, type=int )
 
 	posts = current_user.followed_posts().paginate( page, app.config['POSTS_PER_PAGE'],False)
 
 	if posts.has_next :
-		next_url = url_for('explore' , page=posts.next_num)
+		next_url = url_for('home' , page=posts.next_num)
 	else :
 		next_url = None
 
 	if posts.has_prev :
-		prev_url = url_for('explore' , page=posts.prev_num)
+		prev_url = url_for('home' , page=posts.prev_num)
 	else :
 		prev_url = None
 
-	return render_template('home.html' , posts=posts.items, form=form,title='home' , next_url=next_url , prev_url=prev_url)
+	return render_template('home.html' , posts=posts.items, form=form, title='home' , next_url=next_url , prev_url=prev_url)
 
 
 
@@ -56,7 +54,7 @@ def register():
 
 	form = RegistrationForm()
 	if form.validate_on_submit():
-		user = User(username=form.username.data , email=form.email.data)
+		user = User(username=form.username.data , email=form.email.data , user_category=form.user_category.data)
 		user.set_password(form.password.data)
 		db.session.add(user)
 		db.session.commit()
@@ -77,12 +75,12 @@ def login():
 
 	if form.validate_on_submit():
 		user = User.query.filter_by(username=form.username.data).first()
+
 		if user is None or not user.check_password(form.password.data):
 			flash('Invalid login id or password')
 			return redirect(url_for('login'))
 
 		login_user( user , remember=form.remember_me.data)
-		#login_user( user , remember=True)
 
 		next_page = request.args.get('next')
 		if not next_page or url_parse(next_page).netloc != '' :
@@ -105,25 +103,11 @@ def user(username):
 
 	user = User.query.filter_by(username=username).first_or_404()
 
-	page = request.args.get('page', 1, type=int )
-
-	posts = user.posts.order_by(Post.timeStamp.desc()).paginate(page , app.config['POSTS_PER_PAGE'] , False)
-
-	if posts.has_next :
-		next_url = url_for('user' , page=posts.next_num , username=user.username)
-	else :
-		next_url = None
-
-	if posts.has_prev :
-		prev_url = url_for('user' , page=posts.prev_num , username=user.username)
-	else :
-		prev_url = None
-
-	return render_template("user.html", user=user , posts= posts.items , next_url=next_url , prev_url=prev_url)
+	return render_template("user.html", user=user )
 
 	
 
-@app.route('/editprofile', methods=['GET', 'POST'])
+@app.route('/editprofile/', methods=['GET', 'POST'])
 @login_required
 def editprofile():
     form = EditProfileForm()
@@ -171,22 +155,60 @@ def unfollow(username):
     return redirect(url_for('user', username=username))
 
 
-@app.route('/explore/')
+@app.route('/stories/' , methods=['POST' , 'GET'])
 @login_required
-def explore():
+def stories():
+	form = StoryForm()
+
+	if form.validate_on_submit() :
+		story = Stories(body=form.story.data , author=current_user)
+		db.session.add(story)
+		db.session.commit()
+		flash('your post is on live')
+		return redirect(url_for('stories'))
 
 	page = request.args.get('page', 1, type=int )
 
-	posts = Post.query.order_by(Post.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
+	stories = Stories.query.order_by(Stories.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
 
-	if posts.has_next :
-		next_url = url_for('explore' , page=posts.next_num)
+	if stories.has_next :
+		next_url = url_for('explore' , page=stories.next_num)
 	else :
 		next_url = None
 
-	if posts.has_prev :
-		prev_url = url_for('explore' , page=posts.prev_num)
+	if stories.has_prev :
+		prev_url = url_for('explore' , page=stories.prev_num)
 	else :
 		prev_url = None
 
-	return render_template('home.html' , posts=posts.items , title='Explore' , next_url=next_url , prev_url=prev_url)
+	return render_template('stories.html' , posts=stories.items , title='stories' , next_url=next_url , prev_url=prev_url , form=form)
+
+
+@app.route('/news/')
+def news():
+
+	page = request.args.get('page', 1, type=int )
+
+	news = News.query.order_by(News.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
+
+	if news.has_next :
+		next_url = url_for('explore' , page=news.next_num)
+	else :
+		next_url = None
+
+	if news.has_prev :
+		prev_url = url_for('explore' , page=news.prev_num)
+	else :
+		prev_url = None
+
+	return render_template('news.html' , posts=news.items , title='news' , next_url=next_url , prev_url=prev_url)
+
+
+
+@app.route('/mentors/')
+@login_required
+def mentors():
+
+	mentors = User.query.filter_by(user_category='mentor')	
+
+	return render_template('mentors.html', mentors=mentors, title='mentors')
