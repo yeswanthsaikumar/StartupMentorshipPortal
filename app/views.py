@@ -238,7 +238,7 @@ def messages():
     page = request.args.get('page', 1, type=int)
     
     messages = current_user.messages_recieved.order_by(
-        Message.timestamp.desc()).paginate(
+        Message.timeStamp.desc()).paginate(
             page, app.config['POSTS_PER_PAGE'], False)
     
     next_url = url_for('messages', page=messages.next_num) \

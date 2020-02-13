@@ -139,7 +139,7 @@ class Message(db.Model):
 	sender_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
 	recipient_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
 	body = db.Column(db.String(140))
-	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+	timeStamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
 	def __repr__(self):
 		return '<Message {}>'.format(self.body)

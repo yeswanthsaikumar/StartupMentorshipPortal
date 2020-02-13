@@ -7,7 +7,7 @@ from threading import Thread
 def send_password_reset_email(user):
     token = user.get_reset_password_token()
     send_email('Reset Your Password',
-               sender='addankiyeswanthsaikumar@gmail.com',
+               sender='youremail@gmail.com',
                recipients=[user.email],
                text_body=render_template('email/reset_password.txt',
                                          user=user, token=token),
