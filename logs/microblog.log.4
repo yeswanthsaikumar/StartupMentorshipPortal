@@ -1,22 +1,62 @@
-2020-02-11 23:25:22,455 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:30:39,239 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:31:08,157 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:31:26,870 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:31:30,181 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:32:15,140 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:32:17,400 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:32:45,612 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:33:22,077 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:33:55,249 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:34:48,025 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-11 23:34:53,850 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 08:01:07,617 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 08:30:07,631 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 08:30:07,994 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 08:35:58,063 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 08:35:58,412 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 12:30:04,594 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 12:30:48,507 ERROR: Exception on /login/ [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-02-12 12:30:49,771 ERROR: Exception on /login/ [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: user.sector
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/avenger/workspace/projects/MicroBlog/app/views.py", line 77, in login
+    user = User.query.filter_by(username=form.username.data).first()
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3265, in first
+    ret = list(self[0:1])
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3043, in __getitem__
+    return list(res)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
+    return self._execute_and_instances(context)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
+    return meth(self, multiparams, params)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
+    distilled_params,
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
+    e, statement, parameters, cursor, context
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
+    util.raise_from_cause(sqlalchemy_exception, exc_info)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
+    raise value.with_traceback(tb)
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
+    cursor, statement, parameters, context
+  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.sector
+[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user.user_category AS user_user_category, user.sector AS user_sector 
+FROM user 
+WHERE user.username = ?
+ LIMIT ? OFFSET ?]
+[parameters: ('yeswanth', 1, 0)]
+(Background on this error at: http://sqlalche.me/e/e3q8)
+2020-02-12 12:30:50,585 ERROR: Exception on /login/ [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
     cursor, statement, parameters, context

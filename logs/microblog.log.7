@@ -1,110 +1,89 @@
-2020-01-15 18:24:06,212 ERROR: Exception on /editprofile [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.username
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/home/avenger/workspace/projects/MicroBlog/app/views.py", line 116, in editprofile
-    db.session.commit()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1036, in commit
-    self.transaction.commit()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 503, in commit
-    self._prepare_impl()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 482, in _prepare_impl
-    self.session.flush()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2479, in flush
-    self._flush(objects)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2617, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
-    compat.reraise(exc_type, exc_value, exc_tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 153, in reraise
-    raise value
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2577, in _flush
-    flush_context.execute()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 422, in execute
-    rec.execute(self)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 589, in execute
-    uow,
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 236, in save_obj
-    update,
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 996, in _emit_update_statements
-    statement, multiparams
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
-    return meth(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
-    distilled_params,
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
-    util.raise_from_cause(sqlalchemy_exception, exc_info)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
-    raise value.with_traceback(tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
-[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
-[parameters: ('yogi', 'nothing to share', 1)]
-(Background on this error at: http://sqlalche.me/e/gkpj)
-2020-01-17 08:26:05,538 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-01-17 08:26:08,764 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-01-17 08:26:16,688 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-01-21 19:25:50,347 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:33:31,612 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:35:52,495 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:36:23,037 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:37:47,558 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:38:22,144 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:40:25,870 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:43:39,538 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:46:14,566 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:46:55,826 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:48:19,687 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:49:20,145 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:51:01,429 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:51:27,137 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:53:06,773 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:53:37,120 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:53:51,426 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:54:14,383 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:54:43,352 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 17:59:04,881 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:00:42,402 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:01:19,098 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:01:51,497 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:02:11,673 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:03:23,227 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:03:46,109 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 18:07:02,029 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 19:47:46,646 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 21:13:31,306 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-02 21:13:31,666 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-03 20:43:59,704 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
-2020-02-03 20:44:00,060 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 20:49:30,271 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 20:51:33,822 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 20:51:41,381 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 21:07:22,145 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 21:08:48,808 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 21:10:20,313 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:08:19,740 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:09:34,203 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:10:42,629 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:11:02,421 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:11:18,286 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:27:46,369 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:27:59,033 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:29:20,548 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 22:45:15,812 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:24:25,523 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:44:50,960 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:44:51,322 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:48:58,647 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:50:15,174 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:50:46,095 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-03 23:50:50,606 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-04 00:05:28,403 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-04 00:06:45,090 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-04 14:41:10,201 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-04 14:41:10,576 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:09:19,140 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:09:19,499 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:27:19,014 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:30:48,650 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:31:31,695 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:33:23,800 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-05 20:34:45,568 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 19:24:26,624 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 19:57:54,357 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:01:16,362 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:01:32,052 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:02:35,303 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:08:10,401 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:08:16,087 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:12:10,975 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:13:13,411 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:13:36,530 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:13:53,570 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:17:06,596 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:18:19,040 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:20:08,193 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:21:16,744 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-06 20:21:51,903 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:50]
+2020-02-07 00:17:47,207 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-07 00:41:15,732 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-07 00:52:00,040 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-09 19:03:58,108 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-09 19:03:58,470 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:34:02,835 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:34:03,192 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:35:52,713 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:37:09,245 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:37:39,017 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:40:18,776 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 08:40:19,123 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:12:32,932 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:24:30,632 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:25:01,563 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:25:10,108 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:25:18,827 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:25:39,711 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:38:07,880 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:52:26,221 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:53:48,113 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:53:48,468 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:55:19,019 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 09:59:27,363 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:07:15,251 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:07:58,852 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:08:58,268 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:09:18,934 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:12:42,341 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:12:47,186 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:12:52,531 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:14:42,043 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:14:56,492 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:15:53,718 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:16:08,394 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:34:09,002 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:54:50,351 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:54:51,990 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:59:48,508 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+2020-02-11 10:59:48,861 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
