@@ -4,8 +4,15 @@
 	{% if title %}{{title}} - blog{% else %}Welcome to blog{% endif %}
 {% endblock %}
 
+{% block head %}
+    {{ super() }}
+    {{ fontawesome_css() }}
+    <link href="/static/fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet">
+    <script defer src="/static/fontawesome-free-5.12.1-web/js/all.js"></script>
+{% endblock %}
 
 {% block navbar %}
+
 	<nav class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
@@ -29,9 +36,9 @@
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
                     {% else %}
-                    <li><a href="{{url_for('messages')}}">Messages</a></li>
-                    <li><a href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <li><a href="{{url_for('messages')}}"><i class="fas fa-envelope"></i>  Messages</a></li>
+                    <li><a href="{{ url_for('user', username=current_user.username) }}"><i class="fas fa-user-circle"></i> Profile</a></li>
+                    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
                     {% endif %}
 
                 </ul>
@@ -39,6 +46,11 @@
         </div>
     </nav>
 
+{% endblock %}
+    
+{% block body %}
+    {{ super() }}
+    {{ fontawesome_js() }}
 {% endblock %}
 
 {% block content %}
@@ -50,7 +62,7 @@
 				{% endfor%}
 			{% endif%}
 		{% endwith%}
-		
+
 		{% block app_content %} 
 
         {% endblock %}
