@@ -1,121 +1,124 @@
-2020-02-12 12:31:14,964 ERROR: Exception on /login/ [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+2020-02-15 10:21:46,378 ERROR: Exception on /login/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: user.sector
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1010, in __call__
+    return self.registry[key]
+KeyError: 139737064634112
 
-The above exception was the direct cause of the following exception:
+During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/avenger/workspace/projects/MicroBlog/app/views.py", line 77, in login
-    user = User.query.filter_by(username=form.username.data).first()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3265, in first
-    ret = list(self[0:1])
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3043, in __getitem__
-    return list(res)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
-    return meth(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
-    distilled_params,
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
-    util.raise_from_cause(sqlalchemy_exception, exc_info)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
-    raise value.with_traceback(tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.sector
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user.user_category AS user_user_category, user.sector AS user_sector 
-FROM user 
-WHERE user.username = ?
- LIMIT ? OFFSET ?]
-[parameters: ('yeswanth', 1, 0)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
-2020-02-12 12:31:16,556 ERROR: Exception on /login/ [POST] [in /home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py:1891]
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 12, in before_request
+    if current_user.is_authenticated:
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
+    return self.__local()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
+    user = self.user_callback(user_id)
+  File "/home/avenger/workspace/projects/startupMinds/app/models.py", line 10, in user_loader
+    return User.query.get(int(user_id))
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 519, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 78, in __call__
+    return self.registry()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1012, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3234, in __call__
+    return self.class_(**local_kw)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 138, in __init__
+    bind = options.pop('bind', None) or db.engine
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 937, in engine
+    return self.get_engine()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 956, in get_engine
+    return connector.get_engine()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 561, in get_engine
+    self._engine = rv = self._sa.create_engine(sa_url, options)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 966, in create_engine
+    return sqlalchemy.create_engine(sa_url, **engine_opts)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/__init__.py", line 479, in create_engine
+    return strategy.create(*args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 87, in create
+    dbapi = dialect_cls.dbapi(**dbapi_args)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 118, in dbapi
+    return __import__("MySQLdb")
+ModuleNotFoundError: No module named 'MySQLdb'
+2020-02-15 10:21:48,380 ERROR: Exception on /news/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.OperationalError: no such column: user.sector
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1010, in __call__
+    return self.registry[key]
+KeyError: 139737056241408
 
-The above exception was the direct cause of the following exception:
+During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1951, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1820, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/avenger/workspace/projects/MicroBlog/app/views.py", line 77, in login
-    user = User.query.filter_by(username=form.username.data).first()
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3265, in first
-    ret = list(self[0:1])
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3043, in __getitem__
-    return list(res)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3367, in __iter__
-    return self._execute_and_instances(context)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3392, in _execute_and_instances
-    result = conn.execute(querycontext.statement, self._params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 982, in execute
-    return meth(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 287, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1101, in _execute_clauseelement
-    distilled_params,
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1250, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1476, in _handle_dbapi_exception
-    util.raise_from_cause(sqlalchemy_exception, exc_info)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 398, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 152, in reraise
-    raise value.with_traceback(tb)
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1246, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/avenger/workspace/projects/MicroBlog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 581, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: user.sector
-[SQL: SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.password_hash AS user_password_hash, user.about_me AS user_about_me, user.last_seen AS user_last_seen, user.user_category AS user_user_category, user.sector AS user_sector 
-FROM user 
-WHERE user.username = ?
- LIMIT ? OFFSET ?]
-[parameters: ('yeswanth', 1, 0)]
-(Background on this error at: http://sqlalche.me/e/e3q8)
-2020-02-12 12:32:31,831 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 12:32:32,199 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 12:33:45,073 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 12:33:50,325 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
-2020-02-12 19:19:56,332 INFO: Microblog startup [in /home/avenger/workspace/projects/MicroBlog/app/__init__.py:52]
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
+    rv = func()
+  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 12, in before_request
+    if current_user.is_authenticated:
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
+    return self.__local()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
+    current_user = LocalProxy(lambda: _get_user())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
+    current_app.login_manager._load_user()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
+    return self.reload_user()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
+    user = self.user_callback(user_id)
+  File "/home/avenger/workspace/projects/startupMinds/app/models.py", line 10, in user_loader
+    return User.query.get(int(user_id))
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 519, in __get__
+    return type.query_class(mapper, session=self.sa.session())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 78, in __call__
+    return self.registry()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1012, in __call__
+    return self.registry.setdefault(key, self.createfunc())
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3234, in __call__
+    return self.class_(**local_kw)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 138, in __init__
+    bind = options.pop('bind', None) or db.engine
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 937, in engine
+    return self.get_engine()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 956, in get_engine
+    return connector.get_engine()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 561, in get_engine
+    self._engine = rv = self._sa.create_engine(sa_url, options)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 966, in create_engine
+    return sqlalchemy.create_engine(sa_url, **engine_opts)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/__init__.py", line 479, in create_engine
+    return strategy.create(*args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 87, in create
+    dbapi = dialect_cls.dbapi(**dbapi_args)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 118, in dbapi
+    return __import__("MySQLdb")
+ModuleNotFoundError: No module named 'MySQLdb'

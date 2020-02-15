@@ -81,7 +81,7 @@ button:hover, a:hover {
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-linkedin"></i></a>
         <a href="#"><i class="fab fa-facebook"></i></a>
-        <p><a href="{{url_for('user',user.username)}}" type="button" class="btn btn-default" class="block" >See Profile</a></p>
+        <p><a href="{{url_for('user',username=mentor.username)}}" type="button" class="btn btn-default" class="block" >See Profile</a></p>
       </div>
   	{% endfor %}
 </div>
