@@ -41,7 +41,7 @@ def home():
 	else :
 		prev_url = None
 
-	return render_template('home.html' , posts=posts.items, form=form, title='home' , next_url=next_url , prev_url=prev_url)
+	return render_template('/sections/home.html' , posts=posts.items, form=form, title='home' , next_url=next_url , prev_url=prev_url)
 
 
 @app.route('/user/<username>/')
@@ -50,7 +50,7 @@ def user(username):
 
 	user = User.query.filter_by(username=username).first_or_404()
 
-	return render_template("user.html", user=user )
+	return render_template("/sections/profile.html", user=user )
 
 	
 
@@ -128,7 +128,7 @@ def stories():
 	else :
 		prev_url = None
 
-	return render_template('stories.html' , posts=stories.items , title='stories' , next_url=next_url , prev_url=prev_url , form=form)
+	return render_template('/sections/stories.html' , posts=stories.items , title='stories' , next_url=next_url , prev_url=prev_url , form=form)
 
 @app.route('/news/')
 def news():
@@ -147,7 +147,7 @@ def news():
 	else :
 		prev_url = None
 
-	return render_template('news.html' , posts=news.items , title='news' , next_url=next_url , prev_url=prev_url)
+	return render_template('/sections/news.html' , posts=news.items , title='news' , next_url=next_url , prev_url=prev_url)
 
 
 
@@ -157,7 +157,7 @@ def mentors():
 
 	mentors = User.query.filter_by(user_category='mentor')	
 
-	return render_template('mentors.html', mentors=mentors, title='mentors')
+	return render_template('/sections/explore.html', mentors=mentors, title='mentors')
 
 
 @app.route('/send_message/<recipient>/', methods=['GET', 'POST'])
@@ -172,7 +172,7 @@ def send_message(recipient):
         db.session.commit()
         flash('Your message has been sent.')
         return redirect(url_for('user', username=recipient))
-    return render_template('send_message.html', title='Send Message', form=form, recipient=recipient)
+    return render_template('/communication/send_message.html', title='Send Message', form=form, recipient=recipient)
 
 
 
@@ -193,5 +193,10 @@ def messages():
     prev_url = url_for('messages', page=messages.prev_num) \
         if messages.has_prev else None
     
-    return render_template('messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url)
+    return render_template('/communication/messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url)
 
+@app.route('/videocall/')
+@login_required
+def video_call():
+
+	return render_template('/communication/videocall.html')

@@ -1,11 +1,4 @@
-2020-02-15 10:21:46,378 ERROR: Exception on /login/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1010, in __call__
-    return self.registry[key]
-KeyError: 139737064634112
-
-During handling of the above exception, another exception occurred:
-
+2020-02-15 10:35:18,432 ERROR: Exception on /home/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -15,59 +8,39 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
-    rv = func()
-  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 12, in before_request
-    if current_user.is_authenticated:
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
-    return self.__local()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
-    return self.reload_user()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
-    user = self.user_callback(user_id)
-  File "/home/avenger/workspace/projects/startupMinds/app/models.py", line 10, in user_loader
-    return User.query.get(int(user_id))
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 519, in __get__
-    return type.query_class(mapper, session=self.sa.session())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 78, in __call__
-    return self.registry()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1012, in __call__
-    return self.registry.setdefault(key, self.createfunc())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3234, in __call__
-    return self.class_(**local_kw)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 138, in __init__
-    bind = options.pop('bind', None) or db.engine
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 937, in engine
-    return self.get_engine()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 956, in get_engine
-    return connector.get_engine()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 561, in get_engine
-    self._engine = rv = self._sa.create_engine(sa_url, options)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 966, in create_engine
-    return sqlalchemy.create_engine(sa_url, **engine_opts)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/__init__.py", line 479, in create_engine
-    return strategy.create(*args, **kwargs)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 87, in create
-    dbapi = dialect_cls.dbapi(**dbapi_args)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 118, in dbapi
-    return __import__("MySQLdb")
-ModuleNotFoundError: No module named 'MySQLdb'
-2020-02-15 10:21:48,380 ERROR: Exception on /news/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
-Traceback (most recent call last):
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1010, in __call__
-    return self.registry[key]
-KeyError: 139737056241408
-
-During handling of the above exception, another exception occurred:
-
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 45, in home
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/home.html", line 2, in top-level template code
+    {%import "bootstrap/wtf.html" as wtf%}
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/theme.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 6, in block "html"
+    {%- block head %}
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/theme.html", line 9, in block "head"
+    {{ fontawesome_css() }}
+jinja2.exceptions.UndefinedError: 'fontawesome_css' is undefined
+2020-02-15 10:35:19,310 ERROR: Exception on /stories/ [GET] [in /home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py:1891]
 Traceback (most recent call last):
   File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -77,48 +50,36 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
     raise value
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1947, in full_dispatch_request
-    rv = self.preprocess_request()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 2241, in preprocess_request
-    rv = func()
-  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 12, in before_request
-    if current_user.is_authenticated:
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 348, in __getattr__
-    return getattr(self._get_current_object(), name)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/werkzeug/local.py", line 307, in _get_current_object
-    return self.__local()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 26, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 335, in _get_user
-    current_app.login_manager._load_user()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 359, in _load_user
-    return self.reload_user()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/login_manager.py", line 321, in reload_user
-    user = self.user_callback(user_id)
-  File "/home/avenger/workspace/projects/startupMinds/app/models.py", line 10, in user_loader
-    return User.query.get(int(user_id))
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 519, in __get__
-    return type.query_class(mapper, session=self.sa.session())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 78, in __call__
-    return self.registry()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/util/_collections.py", line 1012, in __call__
-    return self.registry.setdefault(key, self.createfunc())
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3234, in __call__
-    return self.class_(**local_kw)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 138, in __init__
-    bind = options.pop('bind', None) or db.engine
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 937, in engine
-    return self.get_engine()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 956, in get_engine
-    return connector.get_engine()
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 561, in get_engine
-    self._engine = rv = self._sa.create_engine(sa_url, options)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_sqlalchemy/__init__.py", line 966, in create_engine
-    return sqlalchemy.create_engine(sa_url, **engine_opts)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/__init__.py", line 479, in create_engine
-    return strategy.create(*args, **kwargs)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/engine/strategies.py", line 87, in create
-    dbapi = dialect_cls.dbapi(**dbapi_args)
-  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/sqlalchemy/dialects/mysql/mysqldb.py", line 118, in dbapi
-    return __import__("MySQLdb")
-ModuleNotFoundError: No module named 'MySQLdb'
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/app/views.py", line 184, in stories
+    page = request.args.get('page', 1, type=int)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/stories.html", line 2, in top-level template code
+    {%import "bootstrap/wtf.html" as wtf%}
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/theme.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/avenger/workspace/projects/startupMinds/venv/lib/python3.6/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 6, in block "html"
+    {%- block head %}
+  File "/home/avenger/workspace/projects/startupMinds/app/templates/theme.html", line 9, in block "head"
+    {{ fontawesome_css() }}
+jinja2.exceptions.UndefinedError: 'fontawesome_css' is undefined
