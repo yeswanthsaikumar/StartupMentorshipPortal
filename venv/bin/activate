@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/avenger/workspace/projects/startupMinds/venv"
+VIRTUAL_ENV="/home/avenger/workspace/projects/startupMentorshipPortal/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

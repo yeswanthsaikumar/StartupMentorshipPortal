@@ -119,17 +119,16 @@ def stories():
 	stories = Stories.query.order_by(Stories.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
 
 	if stories.has_next :
-		next_url = url_for('explore' , page=stories.next_num)
+		next_url = url_for('stories' , page=stories.next_num)
 	else :
 		next_url = None
 
 	if stories.has_prev :
-		prev_url = url_for('explore' , page=stories.prev_num)
+		prev_url = url_for('stories' , page=stories.prev_num)
 	else :
 		prev_url = None
 
 	return render_template('stories.html' , posts=stories.items , title='stories' , next_url=next_url , prev_url=prev_url , form=form)
-
 
 @app.route('/news/')
 def news():
@@ -174,6 +173,8 @@ def send_message(recipient):
         flash('Your message has been sent.')
         return redirect(url_for('user', username=recipient))
     return render_template('send_message.html', title='Send Message', form=form, recipient=recipient)
+
+
 
 @app.route('/messages/')
 @login_required

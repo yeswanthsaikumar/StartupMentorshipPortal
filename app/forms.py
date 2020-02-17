@@ -11,17 +11,17 @@ class EditProfileForm(FlaskForm):
 
 class PostForm(FlaskForm):
 	post = TextAreaField('Say something', validators=[
-		DataRequired(), Length(min=1, max=5000)])
+		DataRequired(), Length(min=1, max=50000000000)])
 	submit = SubmitField('Submit')
 
 class StoryForm(FlaskForm):
-	story = TextAreaField('Share your experiece with us', validators=[
-		DataRequired(), Length(min=1, max=5000)])
+	story = TextAreaField('summernote', validators=[
+		DataRequired(), Length(min=1, max=500000000000)])
 	submit = SubmitField('Submit')
 
 class MessageForm(FlaskForm):
 	message = TextAreaField('Message', validators=[
-		DataRequired(), Length(min=0, max=140)])
+		DataRequired(), Length(min=0, max=1400000000)])
 	submit = SubmitField('Submit')
 
 

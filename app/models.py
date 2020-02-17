@@ -101,7 +101,7 @@ class Post(db.Model):
 	__tablename__ = 'post'
 
 	Post_id = db.Column( db.Integer, primary_key=True)
-	body = db.Column(db.String(200))
+	body = db.Column(db.Text(4294967295))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
 	user_id = db.Column(db.Integer , db.ForeignKey('user.user_id'))
 
@@ -113,7 +113,7 @@ class Stories(db.Model):
 	__tablename__ = 'stories'
 
 	stories_id = db.Column( db.Integer, primary_key=True)
-	body = db.Column(db.String(5000))
+	body = db.Column(db.Text(4294967295))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
 	user_id = db.Column(db.Integer , db.ForeignKey('user.user_id'))
 
@@ -124,7 +124,7 @@ class News(db.Model):
 	__tablename__ = 'news'
 
 	news_id = db.Column( db.Integer, primary_key=True)
-	body = db.Column(db.String(5000))
+	body = db.Column(db.Text(4294967295))
 	timeStamp = db.Column(db.DateTime , index=True , default=datetime.utcnow)
 	sector = db.Column(db.String(30))
 

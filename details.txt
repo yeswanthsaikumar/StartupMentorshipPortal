@@ -1,2 +1,4 @@
 for running mysql server -> mysql -u root -p then enter password
 for sending mobile otp and messages using -> nexmo
+installing wheel -> pip install wheel
+flaskBB for forum

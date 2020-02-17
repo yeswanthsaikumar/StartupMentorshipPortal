@@ -10,7 +10,7 @@
                     {{ post.author.username }}
                 </a>said {{moment(post.timeStamp).fromNow()}}:
                 <br>
-                {{ post.body }}
+                {{ post.body | safe}}
             </td>
         </tr>
     </table>
