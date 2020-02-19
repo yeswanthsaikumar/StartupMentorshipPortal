@@ -1,26 +1,61 @@
 {% extends "theme.html" %}
-{%import "bootstrap/wtf.html" as wtf%}
+
+{% block head%}
+	{{super()}}
+	<link rel="stylesheet" type="text/css" href="../static/css/news.css"></link>
+{% endblock %}
 
 {% block app_content%}
 
-<div class="container-fluid">
-  <div class="row">
+<div class="container">
 
-    <div class="col-sm-8" ></div>
 
-    <div class="col-sm-4" >
-			<div class="list-group">
-				  <a href="" class="list-group-item list-group-item-action">Techonology <span style="background-color: red" class="badge">12</span></a>
-				  <a href="" class="list-group-item list-group-item-action">Education<span style="back"class="badge">5</span></a>
-				  <a href="" class="list-group-item list-group-item-action">Agriculture<span style="back"class="badge">3</span></a>
-				  <a href="" class="list-group-item list-group-item-action">Automobile<span style="back"class="badge">1</span></a>
-				  <a href="" class="list-group-item list-group-item-action">Aerospace<span style="back"class="badge">50</span></a>
-				  <a href="" class="list-group-item list-group-item-action">Telecommunication<span style="back"class="badge">0</span></a>
-			</div>
-  	</div>
+	 <div id="blog" class="row"> s
+                
+                    <div class="col-sm-2 paddingTop20" style="height: 100%">
+                        <nav class="nav-sidebar">
+                            <ul class="nav">
+                                <li class="active"><a href="">Agriculture</a></li>
+                                <li><a href="">Technology</a></li>
+                                <li><a href="">Education</a></li>
+                                <li><a href="">Bussiness</a></li>
+                                <li><a href="">Travel & Tourism</a></li>
+                                <li><a href="">Sports & fitness</a></li>
+                                <li><a href="">Health care</a></li>
+                                <li class="nav-divider"></li>
+                            </ul>
+                        </nav>
+                    </div>                
 
-  </div>
+                 <div class="col-md-9 blogShort" style="box-shadow:3px 3px 3px 3px #ccc;">
+                     <h1>Title</h1>
+                     <img src="../static/images/news.jpg" alt="article img" style="height: 180px; width:200px;" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                     
+                         <em><h3><a href="{{url_for('morenews')}}">Headline of the article</h3></a></em>
+                     <article><p>
+                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only   
+                         It was popularised in the 1960s with the release
+                         </p></article>
+                     <a class="btn btn-blog pull-right marginBottom10" href="{{url_for('morenews')}}">read more</a> 
+                 </div>
+                
+                <div class="col-md-9 blogShort" style=" box-shadow:3px 3px 3px 3px #ccc; top-margin:5px">
+                     <h1>Title</h1>
+                     <img src="../static/images/news.jpg" alt="article img" style="height: 180px; width:200px;" class="pull-left img-responsive thumb margin10 img-thumbnail">
+                     
+                         <em><h3><a href="{{url_for('morenews')}}">Headline of the article</h3></a></em>
+                     <article><p>
+                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text
+                         ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only   
+                         It was popularised in the 1960s with the release
+                         of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
+                         Lorem Ipsum. 
+                         </p></article>
+                     <a class="btn btn-blog pull-right marginBottom10" href="{{url_for('morenews')}}">read more</a> 
+                 </div>
+               <div class="col-md-12 gap10"></div>
+             </div>
 </div>
-
 
 {% endblock%}

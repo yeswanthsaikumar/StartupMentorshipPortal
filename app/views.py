@@ -12,8 +12,12 @@ def before_request():
 		current_user.last_seen = datetime.utcnow()
 		db.session.commit()
 
+@app.route('/')
+@app.route('/index/')
+def index():
+	return render_template('index.html')
 
-@app.route('/' , methods=['GET' , 'POST'])
+
 @app.route('/home/' , methods=['GET' , 'POST'])
 @login_required
 def home():
@@ -61,6 +65,10 @@ def editprofile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.phone_no = form.phone_no.data
+        current_user.facebook = form.facebook.data
+        current_user.linkedin = form.linkedin.data
+        current_user.twitter = form.twitter.data
         db.session.commit()
         flash('Your changes have been saved.')
         return redirect(url_for('home'))
@@ -138,12 +146,12 @@ def news():
 	news = News.query.order_by(News.timeStamp.desc()).paginate( page, app.config['POSTS_PER_PAGE'],False)	
 
 	if news.has_next :
-		next_url = url_for('explore' , page=news.next_num)
+		next_url = url_for('news' , page=news.next_num)
 	else :
 		next_url = None
 
 	if news.has_prev :
-		prev_url = url_for('explore' , page=news.prev_num)
+		prev_url = url_for('news' , page=news.prev_num)
 	else :
 		prev_url = None
 
@@ -151,13 +159,19 @@ def news():
 
 
 
-@app.route('/mentors/')
+@app.route('/explore/<int:category>')
 @login_required
-def mentors():
-
-	mentors = User.query.filter_by(user_category='mentor')	
-
-	return render_template('/sections/explore.html', mentors=mentors, title='mentors')
+def explore(category):
+	if category == 1 :
+		users = User.query.filter( User.user_category=='entreprenuer' , User.email != current_user.email)
+		print(users)
+	elif category == 2 :
+		users = User.query.filter(User.user_category=='mentor' , User.email != current_user.email)
+		print(users)
+	elif category == 3 :
+		users = User.query.filter(User.user_category=='investor' , User.email != current_user.email)
+		print(users)
+	return render_template('/sections/explore.html', users=users, title='profiles')
 
 
 @app.route('/send_message/<recipient>/', methods=['GET', 'POST'])
@@ -194,6 +208,15 @@ def messages():
         if messages.has_prev else None
     
     return render_template('/communication/messages.html', messages=messages.items, next_url=next_url, prev_url=prev_url)
+
+
+
+@app.route('/morenews/')
+@login_required
+def morenews():
+	return render_template('/sections/morenews.html')
+
+	
 
 @app.route('/videocall/')
 @login_required

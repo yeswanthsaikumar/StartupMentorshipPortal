@@ -1,10 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField , SubmitField , TextField , BooleanField , TextAreaField , SelectField
+from wtforms import PasswordField , SubmitField , TextField , BooleanField , TextAreaField , SelectField , IntegerField
 from wtforms.validators import DataRequired , Email , EqualTo , ValidationError , Length
 from app.models import User
 
 class EditProfileForm(FlaskForm):
 	username = TextField('Username' , validators=[DataRequired()])
+	facebook = TextField('facebook profile' )
+	linkedin = TextField('linkedIn profile' )
+	twitter = TextField('twitter profile' )
+	phone_no = TextField('Phone no' )
 	about_me = TextAreaField('About_me' , validators=[Length(min=0 , max=200)])
 	submit = SubmitField('Submit')
 

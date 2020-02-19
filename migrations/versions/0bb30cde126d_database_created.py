@@ -1,8 +1,8 @@
-"""data base created
+"""database created
 
-Revision ID: 58d82d9c3ff4
+Revision ID: 0bb30cde126d
 Revises: 
-Create Date: 2020-02-18 00:14:13.987985
+Create Date: 2020-02-20 04:00:19.090980
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '58d82d9c3ff4'
+revision = '0bb30cde126d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,13 +32,26 @@ def upgrade():
     sa.Column('email', sa.String(length=64), nullable=True),
     sa.Column('password_hash', sa.String(length=200), nullable=True),
     sa.Column('about_me', sa.String(length=200), nullable=True),
+    sa.Column('about_venture', sa.String(length=150), nullable=True),
     sa.Column('last_seen', sa.DateTime(), nullable=True),
+    sa.Column('facebook', sa.String(length=80), nullable=True),
+    sa.Column('linkedin', sa.String(length=80), nullable=True),
+    sa.Column('twitter', sa.String(length=80), nullable=True),
+    sa.Column('experience', sa.String(length=150), nullable=True),
+    sa.Column('mentor_expections', sa.String(length=50), nullable=True),
+    sa.Column('max_fund', sa.String(length=50), nullable=True),
+    sa.Column('profession', sa.String(length=60), nullable=True),
     sa.Column('user_category', sa.String(length=50), nullable=True),
+    sa.Column('phone_no', sa.String(length=15), nullable=True),
     sa.Column('sector', sa.String(length=50), nullable=True),
     sa.Column('last_message_read_time', sa.DateTime(), nullable=True),
     sa.PrimaryKeyConstraint('user_id')
     )
     op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
+    op.create_index(op.f('ix_user_facebook'), 'user', ['facebook'], unique=True)
+    op.create_index(op.f('ix_user_linkedin'), 'user', ['linkedin'], unique=True)
+    op.create_index(op.f('ix_user_phone_no'), 'user', ['phone_no'], unique=False)
+    op.create_index(op.f('ix_user_twitter'), 'user', ['twitter'], unique=True)
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('followers',
     sa.Column('follower_id', sa.Integer(), nullable=True),
@@ -88,6 +101,10 @@ def downgrade():
     op.drop_table('message')
     op.drop_table('followers')
     op.drop_index(op.f('ix_user_username'), table_name='user')
+    op.drop_index(op.f('ix_user_twitter'), table_name='user')
+    op.drop_index(op.f('ix_user_phone_no'), table_name='user')
+    op.drop_index(op.f('ix_user_linkedin'), table_name='user')
+    op.drop_index(op.f('ix_user_facebook'), table_name='user')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
     op.drop_index(op.f('ix_news_timeStamp'), table_name='news')

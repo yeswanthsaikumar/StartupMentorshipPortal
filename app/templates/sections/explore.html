@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
-{% block app_content%}
+{% block app_content %}
 <style>
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -33,7 +33,7 @@ button {
   font-size: 18px;
 }
 
-div > a {
+.card > a {
   text-decoration: none;
   font-size: 22px;
 }
@@ -71,17 +71,17 @@ button:hover, a:hover {
 </style>
 
 <div class="flex-container">
-  	{%for mentor in mentors%}
+  	{%for user in users%}
 
       <div class="card">
         <img src="../static/images/views.jpeg" alt="John" style="width:100%">
-        <h3>{{mentor.username}}</h3>
+        <h3>{{user.username}}</h3>
         <p class="title">Role of the person</p>
-        <p>Harvard University</p>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <p><a href="{{url_for('user',username=mentor.username)}}" type="button" class="btn btn-default" class="block" >See Profile</a></p>
+        <p>About me</p>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-linkedin"></i></a>
+        <a href=""><i class="fab fa-facebook"></i></a>
+        <p><a href="{{url_for('user',username=user.username)}}" type="button" class="btn btn-default" class="block" >See Profile</a></p>
       </div>
   	{% endfor %}
 </div>
